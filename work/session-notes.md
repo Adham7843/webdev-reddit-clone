@@ -6,3 +6,6 @@
 - Project scaffolded (LEARN, theme webdev, META).
 - Stack: Node + React. Code home: work/build/reddit-clone/.
 - Next: run client + server hello-world, then feed API.
+
+## 2026-10-05 — visibility
+- Repo flipped to PUBLIC per Sovereign request.
