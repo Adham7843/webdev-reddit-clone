@@ -1,0 +1,1 @@
+{"dependencies": {"cors": "^2.8.5", "dotenv": "^16.4.5", "express": "^4.19.2"}, "name": "reddit-clone-server", "private": true, "scripts": {"dev": "node index.js", "start": "node index.js"}, "type": "module", "version": "0.1.0"}

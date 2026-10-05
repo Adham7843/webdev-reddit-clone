@@ -1,0 +1,12 @@
+type: project
+standard: v1
+kind: LEARN
+theme: webdev
+mode: meta
+status: active
+kept: true
+github: https://github.com/Adham7843/webdev-reddit-clone
+intake: project
+source_template: design/v1/project-kinds/LEARN
+id: webdev-reddit-clone
+serves: null

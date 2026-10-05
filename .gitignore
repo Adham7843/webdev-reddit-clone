@@ -1,0 +1,15 @@
+# ---> Node / JS
+node_modules/
+dist/
+.env
+.env.local
+*.log
+
+# ---> Vite
+client/dist/
+client/.vite/
+
+# ---> OS / editor
+.DS_Store
+.vscode/
+.idea/
