@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "agent": {
+    "webdev-reddit-clone-agent": {
+      "description": "Tutor/operator for the web dev course Reddit clone (Node + React).",
+      "prompt": "{file:./agent/AGENTS.md}",
+      "mode": "primary"
+    }
+  },
+  "skills": {
+    "paths": [
+      ".opencode/skills",
+      "skills",
+      "../../../01-Note-Management/agents/architecture-steward/.opencode/skills"
+    ]
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    }
+  }
+}

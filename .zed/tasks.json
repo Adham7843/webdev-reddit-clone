@@ -1,0 +1,12 @@
+[
+  {
+    "label": "webdev-reddit-clone-agent (OpenCode)",
+    "command": "opencode",
+    "cwd": "F:\\Notes\\Projects\\LEARN\\webdev-reddit-clone\\agent"
+  },
+  {
+    "label": "webdev-reddit-clone (Antigravity)",
+    "command": "agy",
+    "cwd": "F:\\Notes\\Projects\\LEARN\\webdev-reddit-clone"
+  }
+]
