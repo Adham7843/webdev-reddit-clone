@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>reddit-clone · capability demo</title>
+<style>
+  :root { font-family: system-ui, Arial, sans-serif; background:#0e1113; color:#d7dadc; }
+  body { margin:0; }
+  .page { min-height:100vh; }
+  .topbar { display:flex; gap:12px; align-items:baseline; padding:12px 20px; background:#1a1a1b; border-bottom:1px solid #343536; }
+  .logo { font-weight:800; color:#ff4500; font-size:20px; }
+  .tag { color:#818384; font-size:13px; }
+  .bar { display:flex; gap:8px; align-items:center; padding:12px 20px; max-width:760px; margin:0 auto; }
+  .bar button, .bar input { background:#1a1a1b; color:#d7dadc; border:1px solid #343536; border-radius:6px; padding:6px 10px; font:inherit; font-size:13px; }
+  .bar button.on { color:#ff4500; border-color:#ff4500; }
+  .feed { max-width:760px; margin:8px auto 40px; padding:0 12px; display:grid; gap:10px; }
+  .post { display:flex; gap:12px; background:#1a1a1b; border:1px solid #343536; border-radius:8px; padding:10px 14px; }
+  .post h2 { margin:4px 0 0; font-size:17px; }
+  .meta { color:#818384; font-size:12px; }
+  .body { flex:1; min-width:0; }
+  .votes { display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .votes button { background:none; border:none; color:#818384; cursor:pointer; font-size:15px; }
+  .votes button:hover { color:#ff4500; }
+  .warn { background:#3a2b00; border:1px solid #8a6d00; padding:8px 12px; border-radius:6px; }
+  .thread { margin:8px 0 0; border-top:1px solid #343536; padding-top:8px; }
+  .comment { font-size:13px; color:#d7dadc; margin:4px 0; }
+  .comment b { color:#818384; font-weight:600; }
+  .composer { display:flex; gap:8px; margin-top:8px; }
+  .composer input { flex:1; background:#0e1113; color:#d7dadc; border:1px solid #343536; border-radius:6px; padding:6px 10px; font:inherit; font-size:13px; }
+  .composer button { background:#ff4500; color:#fff; border:none; border-radius:6px; padding:6px 14px; font:inherit; font-size:13px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <span class="logo">reddit-clone</span>
+    <span class="tag">capability demo — static, no build</span>
+  </header>
+
+  <div class="bar">
+    <button data-sort="votes" class="on">Top</button>
+    <button data-sort="new">New</button>
+    <input id="filter" placeholder="filter by r/…" />
+  </div>
+
+  <main class="feed" id="feed"></main>
+</div>
+
+<script type="module">
+const SEED = [
+  { id: "1", sub: "r/webdev",   title: "I rebuilt Reddit to learn full-stack", author: "you",        votes: 128, createdAt: Date.now() - 3600e3, comments: 1 },
+  { id: "2", sub: "r/reactjs", title: "Showoff Saturday — post your clone",  author: "coursemate", votes: 42,  createdAt: Date.now() - 7200e3, comments: 0 },
+];
+
+const feed = document.getElementById("feed");
+const comments = { 1: [{ author: "mentor", body: "Good start — now add voting persistence." }] };
+let posts = [];
+let sort = "votes";
+
+const api = async (path, opts) => {
+  const r = await fetch(path, opts);
+  if (!r.ok) throw new Error(`API ${r.status}`);
+  return r.json();
+};
+
+async function load() {
+  try {
+    posts = await api("/api/posts");
+  } catch {
+    posts = structuredClone(SEED);
+    render(`<p class="warn">API offline — start the server (:4000). Showing seed.</p>`);
+    return;
+  }
+  render();
+}
+
+const vote = (id, dir) => {
+  posts = posts.map((p) => (p.id === id ? { ...p, votes: p.votes + dir } : p));
+  render();
+  api(`/api/posts/${id}/vote`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ dir }),
+  }).catch(() => { /* optimistic already applied */ });
+};
+
+const addComment = (id, body) => {
+  (comments[id] ||= []).push({ author: "you", body });
+  posts = posts.map((p) => (p.id === id ? { ...p, comments: comments[id].length } : p));
+  render();
+  api(`/api/posts/${id}/comments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ author: "you", body }),
+  }).catch(() => {});
+};
+
+function visible() {
+  const q = document.getElementById("filter").value.trim().toLowerCase();
+  const list = posts.filter((p) => !q || p.sub.toLowerCase().includes(q));
+  return sort === "votes"
+    ? list.sort((a, b) => b.votes - a.votes)
+    : list.sort((a, b) => b.createdAt - a.createdAt);
+}
+
+function render(prefix = "") {
+  const list = visible();
+  feed.innerHTML =
+    prefix +
+    (list.length === 0 ? "<p>Loading…</p>" : "") +
+    list.map((p) => `
+      <article class="post">
+        <div class="votes">
+          <button onclick="vote('${p.id}',1)"  aria-label="upvote">▲</button>
+          <strong>${p.votes}</strong>
+          <button onclick="vote('${p.id}',-1)" aria-label="downvote">▼</button>
+        </div>
+        <div class="body">
+          <div class="meta">${p.sub} · u/${p.author} · 💬 ${p.comments ?? 0}</div>
+          <h2>${p.title}</h2>
+          <div class="thread">
+            ${(comments[p.id] || []).map((c) => `<p class="comment"><b>u/${c.author}</b> ${c.body}</p>`).join("")}
+            <div class="composer">
+              <input placeholder="add a comment…" onkeydown="if(event.key==='Enter')send('${p.id}',this)">
+              <button onclick="send('${p.id}',this.previousElementSibling)">Comment</button>
+            </div>
+          </div>
+        </div>
+      </article>`).join("");
+}
+
+function send(id, input) {
+  if (!input.value.trim()) return;
+  addComment(id, input.value.trim());
+}
+Object.assign(window, { vote, send });
+
+document.querySelectorAll("[data-sort]").forEach((b) =>
+  b.addEventListener("click", () => {
+    sort = b.dataset.sort;
+    document.querySelectorAll("[data-sort]").forEach((x) => x.classList.toggle("on", x === b));
+    render();
+  }),
+);
+document.getElementById("filter").addEventListener("input", () => render());
+
+load();
+</script>
+</body>
+</html>
