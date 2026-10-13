@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Adham Amr El Zeiny — web developer building full-stack apps with Node, Express and React." />
+    <title>Adham Amr — Web Developer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- ============ HEADER / NAV ============ -->
+      <header class="site-header">
+        <p class="brand">Adham Amr</p>
+        <nav class="site-nav">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#cv">CV</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- ============ HERO ============ -->
+        <section class="hero">
+          <h1>Adham Amr El Zeiny</h1>
+          <p class="role">Web Developer &mdash; Node / Express / React</p>
+          <p class="hero-lede">
+            I build full-stack web apps and learn in public. Currently working through a
+            web development course by shipping real projects &mdash; an API, a React client,
+            and the boring parts in between.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View projects</a>
+            <a class="btn" href="https://github.com/Adham7843" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+          </div>
+        </section>
+
+        <!-- ============ ABOUT ============ -->
+        <section id="about" class="section">
+          <h2>About Me</h2>
+          <div class="about-grid">
+            <p>
+              I'm Adham &mdash; a developer working through a full-stack web development course,
+              building a Reddit-style site from scratch with a Node/Express API and a React
+              frontend. I care about the whole path: designing a route, wiring the client to it,
+              handling the error states, and making it responsive.
+            </p>
+            <ul class="facts">
+              <li><strong>Role</strong> Web developer (in training)</li>
+              <li><strong>Stack</strong> Node, Express, React, Vite</li>
+              <li><strong>GitHub</strong> <a href="https://github.com/Adham7843" target="_blank" rel="noopener noreferrer">@Adham7843</a></li>
+              <li><strong>Projects shipped</strong> <span data-project-count>4</span></li>
+              <li><strong>Based in</strong> <span class="todo">[ your city / country ]</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============ PROJECTS ============ -->
+        <section id="projects" class="section section-alt">
+          <h2>Projects</h2>
+          <p class="section-sub">Two public repositories, plus what I'm building right now.</p>
+
+          <div class="project-grid">
+            <!-- 1 — real repo -->
+            <article class="card">
+              <div class="card-head">
+                <h3>Reddit Clone</h3>
+                <span class="badge badge-live">In progress</span>
+              </div>
+              <p class="card-desc">
+                Full-stack Reddit-style site built as the capstone of a web development course.
+                Express API with posts, voting and threaded comments; React client that fetches
+                the feed rather than hardcoding it.
+              </p>
+              <ul class="tag-list">
+                <li>Node</li><li>Express</li><li>React</li><li>Vite</li>
+              </ul>
+              <div class="card-links">
+                <a href="https://github.com/Adham7843/webdev-reddit-clone" target="_blank" rel="noopener noreferrer">Code</a>
+              </div>
+            </article>
+
+            <!-- 2 — real repo + live page -->
+            <article class="card">
+              <div class="card-head">
+                <h3>Bricks Breaker &mdash; Privacy Policy</h3>
+                <span class="badge badge-live">Live</span>
+              </div>
+              <p class="card-desc">
+                Privacy policy page for <em>Bricks Breaker</em> by AZ GP Games, published to
+                GitHub Pages. A small, shipped, public web product.
+              </p>
+              <ul class="tag-list">
+                <li>HTML</li><li>CSS</li><li>GitHub Pages</li>
+              </ul>
+              <div class="card-links">
+                <a href="https://github.com/Adham7843/cannon-raid-bricks-breaker-privacy" target="_blank" rel="noopener noreferrer">Code</a>
+                <a href="https://adham7843.github.io/cannon-raid-bricks-breaker-privacy/" target="_blank" rel="noopener noreferrer">Live site</a>
+              </div>
+            </article>
+
+            <!-- 3 — this site -->
+            <article class="card">
+              <div class="card-head">
+                <h3>Developer Portfolio</h3>
+                <span class="badge">HTML + CSS</span>
+              </div>
+              <p class="card-desc">
+                This page. A single static site built with semantic HTML and a hand-written
+                stylesheet &mdash; no framework, no build step, no JavaScript. Responsive down
+                to phone width.
+              </p>
+              <ul class="tag-list">
+                <li>HTML</li><li>CSS</li><li>Responsive</li><li>A11y</li>
+              </ul>
+              <div class="card-links">
+                <a href="#contact">Get in touch</a>
+              </div>
+            </article>
+
+            <!-- 4 — second app -->
+            <article class="card">
+              <div class="card-head">
+                <h3>Portfolio &mdash; React version</h3>
+                <span class="badge badge-live">In progress</span>
+              </div>
+              <p class="card-desc">
+                The same portfolio rebuilt in React &mdash; split into components, driven by a
+                data file, with state for the mobile nav and project filtering.
+              </p>
+              <ul class="tag-list">
+                <li>React</li><li>Vite</li><li>Components</li><li>State</li>
+              </ul>
+              <div class="card-links">
+                <span class="muted">Local &mdash; not published yet</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ============ SKILLS ============ -->
+        <section id="skills" class="section">
+          <h2>Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h3>Frontend</h3>
+              <ul class="tag-list">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li><li>Vite</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Backend</h3>
+              <ul class="tag-list">
+                <li>Node.js</li><li>Express</li><li>REST API design</li><li>JSON</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Tools</h3>
+              <ul class="tag-list">
+                <li>Git</li><li>GitHub</li><li>GitHub Pages</li><li>npm</li><li>Postman</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Practicing</h3>
+              <ul class="tag-list">
+                <li>Databases</li><li>Auth / sessions</li><li>Testing</li><li>Accessibility</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ CV ============ -->
+        <section id="cv" class="section section-alt">
+          <h2>Curriculum Vitae</h2>
+          <p class="section-sub">
+            Short form. <span class="todo">[ replace with your real details ]</span>
+          </p>
+
+          <div class="cv-grid">
+            <div class="cv-block">
+              <h3>Experience</h3>
+              <ul class="timeline">
+                <li>
+                  <h4>Full-Stack Web Development Course</h4>
+                  <p class="tl-meta">2026 &mdash; present</p>
+                  <p>
+                    Building a Reddit-style clone end to end: Express API, React client,
+                    voting, comments and auth.
+                  </p>
+                </li>
+                <li>
+                  <h4>Freelance / Contract Web Work</h4>
+                  <p class="tl-meta"><span class="todo">[ add client + dates ]</span></p>
+                  <p>
+                    Delivered the Bricks Breaker privacy policy page for AZ GP Games,
+                    published via GitHub Pages.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="cv-block">
+              <h3>Education &amp; Focus</h3>
+              <ul class="timeline">
+                <li>
+                  <h4>Web Development</h4>
+                  <p class="tl-meta"><span class="todo">[ add school / platform ]</span></p>
+                  <p>
+                    Focus areas: HTTP &amp; REST, React component design, responsive CSS,
+                    accessible forms.
+                  </p>
+                </li>
+                <li>
+                  <h4>Game Development</h4>
+                  <p class="tl-meta">AZ GP Games</p>
+                  <p>
+                    Part of AZ GP Games, shipping browser games including Bricks Breaker.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="cv-block">
+              <h3>Contact details</h3>
+              <ul class="facts">
+                <li><strong>Email</strong> <span class="todo">[ your email ]</span></li>
+                <li><strong>GitHub</strong> <a href="https://github.com/Adham7843" target="_blank" rel="noopener noreferrer">@Adham7843</a></li>
+                <li><strong>Location</strong> <span class="todo">[ your city / country ]</span></li>
+              </ul>
+              <p class="cv-download">
+                <a class="btn btn-primary" href="[ link to your CV PDF ]">Download CV (PDF)</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section id="contact" class="section">
+          <h2>Contact Me</h2>
+          <p class="section-sub">
+            Prefer GitHub? <a href="https://github.com/Adham7843" target="_blank" rel="noopener noreferrer">Open an issue</a>.
+          </p>
+          <form class="contact-form" action="#" method="post">
+            <label class="sr-only" for="name">Your Name</label>
+            <input id="name" name="name" type="text" placeholder="Your Name" required />
+
+            <label class="sr-only" for="email">Your Email</label>
+            <input id="email" name="email" type="email" placeholder="Your Email" required />
+
+            <label class="sr-only" for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+          <p class="form-note">
+            No backend wired up yet &mdash; the browser validates the fields, then the page reloads.
+          </p>
+        </section>
+      </main>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="site-footer">
+        <p>&copy; 2026 Adham Amr El Zeiny. All Rights Reserved.</p>
+        <p class="footer-links">
+          <a href="https://github.com/Adham7843" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="#projects">Projects</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

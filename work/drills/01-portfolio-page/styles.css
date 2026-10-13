@@ -1,0 +1,233 @@
+/* Lab 01 — Portfolio page
+   Full-page (edge-to-edge) single column. Proportions taken from the reference
+   screenshot: one dark header, three light sections, dark footer.
+
+   To go back to the narrow "card floating in white gutters" look, add this:
+     .page { max-width: 660px; margin: 0 auto; background: #fff; }
+   and set body { background: #fff; } */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #1a1a1a;
+  --dark: #1f1f1f;
+  --page-bg: #f1f1f1;
+  --card-bg: #ffffff;
+  --line: #e3e3e3;
+  --muted: #6b6b6b;
+
+  /* how wide content is allowed to get before it starts reading as a long line */
+  --measure: 900px;
+  --measure-text: 620px;
+  --measure-form: 420px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--page-bg);
+  line-height: 1.5;
+}
+
+/* ---------- page shell ---------- */
+
+/* full bleed — the section backgrounds span the whole viewport */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* content grows on wide screens, but pushes its own padding on narrow ones */
+.section,
+.site-header,
+.site-footer {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+main {
+  flex: 1;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  background: var(--dark);
+  color: #ffffff;
+  text-align: center;
+  padding-top: 52px;
+  padding-bottom: 44px;
+}
+
+.site-header h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+.site-nav a {
+  color: #cfcfcf;
+  text-decoration: none;
+  font-size: 13px;
+  margin: 0 10px;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ---------- sections ---------- */
+
+.section {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  text-align: center;
+}
+
+.section h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.lede {
+  max-width: var(--measure-text);
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #3a3a3a;
+}
+
+/* ---------- projects ---------- */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 18px;
+  text-align: left;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---------- contact form ---------- */
+
+.contact-form {
+  max-width: var(--measure-form);
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid #9bb8d3;
+  outline-offset: 1px;
+}
+
+.contact-form button {
+  padding: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #ffffff;
+  background: var(--dark);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #333333;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: var(--dark);
+  color: #ffffff;
+  text-align: center;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 11px;
+}
+
+/* ---------- utilities ---------- */
+
+/* visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 640px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    max-width: 100%;
+  }
+}
